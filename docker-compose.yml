@@ -1,0 +1,30 @@
+services:
+  node1:
+    build:
+      context: .
+      dockerfile: Dockerfile # compose file relative path
+    ports:
+      - "2223:22"
+    volumes:
+      - ./authorized_keys_fleet:/home/user/.ssh/authorized_keys:ro # readonly
+    restart: unless-stopped
+
+  node2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2224:22" # if the host is keeping all of these, they can't have the same ports
+    volumes:
+      - ./authorized_keys_fleet:/home/user/.ssh/authorized_keys:ro
+    restart: unless-stopped
+
+  node3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "2225:22"
+    volumes:
+      - ./authorized_keys_fleet:/home/user/.ssh/authorized_keys:ro
+    restart: unless-stopped
