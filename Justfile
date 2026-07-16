@@ -189,6 +189,9 @@ list-fleet-services:
 check:
   docker compose ps
 
+clean: stop
+  docker system prune 
+
 stop:
   docker compose -f "{{compose_file}}" stop $({{compose_services_cmd}})
 
