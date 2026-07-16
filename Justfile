@@ -186,6 +186,9 @@ run:
 list-fleet-services:
   {{compose_services_cmd}}
 
+check:
+  docker compose ps
+
 stop:
   docker compose -f "{{compose_file}}" stop $({{compose_services_cmd}})
 
